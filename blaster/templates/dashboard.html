@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' type='text/css' href='../static/css/blaster.css'>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Alert box functions after emails are blasted -->
+    <script>
+    $( function() {
+        $( "#dialog" ).dialog({
+            autoOpen: false,
+            show: {
+            effect: "blind",
+            duration: 1000
+            },
+            hide: {
+            effect: "explode",
+            duration: 1000
+            }
+        });
+        $( "#opener" ).on( "submit", function() {
+            $( "#dialog" ).dialog( "open" );
+        });
+    } );
+    </script>
+
+    <title>Keltrans Blaster 3000</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/dashboard"><img src="../static/pics/keltrans_logo.jpg" alt="KelTrans Logo" style="height: 100px;"></a>
+        <div>
+            <a href="/logout"><button class="btn btn-outline-danger">Logout</button></a>
+            <a href="/admin"><button class="btn btn-outline-info">Admin Login</button></a>
+        </div>
+    </div>
+
+        <div class="container">
+            <h1 class="col-12 text-center title">Keltrans Email Blaster 3000<span class="v title"> v2.0</span></h1>
+            <p class="col-12 text-center subtitle">For all of your email blasting needs</p>
+
+            <hr class="hr">
+
+            <h3 class="col-12 text-center mt-2 w3-animate-zoom newEmail">Welcome {{user.name}}, Create a new Email</h3>
+
+            <br>
+
+            <form action="/blast" method="POST" class="col-md-8 offset-md-2 mt-3" enctype="multipart/form-data" id="opener">
+            {% csrf_token %}
+                <div class="row mt-2">
+                    <input class='form-control' name='email' type="text" placeholder="From:" required>
+                </div>
+                <div class="row send mt-3">
+                    <input class='form-control' type="text" name='email_to' placeholder="To:" required>
+                </div>
+                <div class="row mt-3">
+                    <input class='form-control' name='subject' type="text" placeholder="Subject:" required>
+                </div>
+                <div class="row mt-3">
+                    <input class='form-control' name='password' type="password" placeholder=" Your Email Password:" required>
+                    <p style="color: red;">{{error}}</p>
+                </div>
+                <div class="row mt-3">
+                    <textarea class='form-control' name="message" id="message" cols="30" rows="8" placeholder="Email Body:" required></textarea>
+                </div>
+
+                <button class="col-6 offset-3 btn btn-info btn-lg mt-4 blast">Commence Blast</button>
+            </form>
+
+            <!-- Pop-up box when emails are blasted out -->
+            <div id="dialog" title="Sending Emails!" class="text-center">
+                <p>Please wait, this may take awhile to complete</p>
+                <img src="../static/pics/dance.gif" alt="Dancing Coffee" height="200px" width="auto">
+            </div>
+
+        </div>
+
+</body>
+</html>

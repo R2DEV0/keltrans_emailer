@@ -1,0 +1,45 @@
+.logdiv{
+    background-color: rgba(255, 255, 255, 0.671);
+    border-radius: 3px;
+    margin-top: 7%;
+}
+
+.navbar{
+    background-color: white;
+    margin-top: -20px;
+}
+
+@media only screen and (min-width: 100px){
+    .page-footer{
+        color: black;
+        margin-top: 50%;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .page-footer{
+        color: black;
+        margin-top: 50%;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .page-footer{
+        text-align: center;
+        margin-top: 50%;
+        color: black;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .page-footer{
+        bottom: 0;
+        left: 0;
+        color: black;
+        right: 0;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.877);
+    }
+}
